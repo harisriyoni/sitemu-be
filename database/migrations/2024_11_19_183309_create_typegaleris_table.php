@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('galeris', function (Blueprint $table) {
+        Schema::create('type_galeris', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('type_galeri_id')->nullable(false);
-            $table->string('image')->nullable(false);
-            $table->string('title_image')->nullable(false);
-            $table->foreign('type_galeri_id')->references('id')->on('type_galeris');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('galeris');
+        Schema::dropIfExists('typegaleris');
     }
 };
