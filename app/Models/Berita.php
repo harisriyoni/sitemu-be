@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Organisasi extends Model
+class Berita extends Model
 {
-    protected $table = 'organisasis';
+    protected $table = 'beritas';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $incrementing = true;
     public $timestamps = true;
 
     protected $fillable = [
-        'jabatan',
-        'nama',
+        'title_berita',
+        'tanggal',
         'image',
+        'deskripsi'
     ];
 
     public function user(): BelongsTo

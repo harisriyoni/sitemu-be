@@ -5,22 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Organisasi extends Model
+class Galeri extends Model
 {
-    protected $table = 'organisasis';
+    protected $table = 'galeris';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $incrementing = true;
     public $timestamps = true;
 
     protected $fillable = [
-        'jabatan',
-        'nama',
         'image',
+        'title_image',
     ];
 
-    public function user(): BelongsTo
+    public function typegaleri(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Typegaleri::class, 'type_galeri_id', 'id');
     }
 }
