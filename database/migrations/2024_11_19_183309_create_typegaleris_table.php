@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('type_galeris', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable(false);
             $table->string('type');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('tanggal')->nullable();
             $table->string('image')->nullable();
             $table->text('deskripsi')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

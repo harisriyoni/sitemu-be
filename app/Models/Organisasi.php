@@ -13,11 +13,7 @@ class Organisasi extends Model
     public $incrementing = true;
     public $timestamps = true;
 
-    protected $fillable = [
-        'jabatan',
-        'nama',
-        'image',
-    ];
+    protected $fillable = ['jabatan', 'nama', 'image', 'user_id'];
 
     public function user(): BelongsTo
     {

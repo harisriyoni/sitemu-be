@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tahun')->nullable(false);
             $table->string('prestasi')->nullable(false);
             $table->text('deskripsi')->nullable(false);
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

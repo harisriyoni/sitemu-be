@@ -6,14 +6,14 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserLoginRequest extends FormRequest
+class OrganisasiCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user() != null;
     }
 
     /**
@@ -24,9 +24,9 @@ class UserLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['nullable', 'max:10'],
-            'username' => ['required', 'max:100'],
-            'password' => ['required', 'max:100', 'min:6'],
+            'jabatan' => 'required|max:255',
+            'nama' => 'required|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
     protected function failedValidation(Validator $validator)
