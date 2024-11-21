@@ -26,6 +26,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/dashboard/organisasi', [OrganisasiController::class, 'create']);
     Route::get('/dashboard/organisasi', [OrganisasiController::class, 'get']);
     Route::get('/dashboard/organisasi/{id}', [OrganisasiController::class, 'getid'])->where('{id}', '[0-9]+');
-    Route::put('/dashboard/organisasi/{id}', [OrganisasiController::class, 'update'])->where('{id}', '[0-9]+');
     Route::delete('/dashboard/organisasi/{id}', [OrganisasiController::class, 'delete'])->where('{id}', '[0-9]+');
+    Route::post('/dashboard/organisasi/{id}', [OrganisasiController::class, 'update'])->where('{id}', '[0-9]+');
 });

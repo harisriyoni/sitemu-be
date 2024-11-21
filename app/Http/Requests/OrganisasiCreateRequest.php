@@ -24,9 +24,9 @@ class OrganisasiCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'jabatan' => 'required|max:255',
-            'nama' => 'required|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
     protected function failedValidation(Validator $validator)

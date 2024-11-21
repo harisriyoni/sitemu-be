@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class OrganisasiController extends Controller
@@ -62,30 +63,24 @@ class OrganisasiController extends Controller
     {
         $data = $request->validated();
         $user = Auth::user();
-        dd($data);
         $organisasi = $this->getOrganisasi($user, $idorgs);
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $originalName = $file->getClientOriginalName();
             $uniqueName = time() . '_' . $originalName;
             $filepath = $file->storeAs('uploads/organisasi', $uniqueName, 'public');
-            $data['image'] = $filepath;
-
             if ($organisasi->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($organisasi->image)) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($organisasi->image);
             }
+            $data['image'] = $filepath;
         }
-
         $organisasi->update($data);
-
         return response()->json([
             'message' => 'Data Berhasil di Update',
             'data' => new OrganisasiResource($organisasi),
         ]);
     }
-
-
-
 
     public function getid(int $idorgs): OrganisasiResource
     {
@@ -93,6 +88,7 @@ class OrganisasiController extends Controller
         $organisasi = $this->getOrganisasi($user, $idorgs);
         return new OrganisasiResource($organisasi);
     }
+
     public function delete(int $idorgs): JsonResponse
     {
         $user = Auth::user();
